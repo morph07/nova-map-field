@@ -53,6 +53,10 @@ class MapPointField extends Field
     {
         $attribute = $attribute ?? $this->attribute;
 
+        if (is_array($resource)) {
+            $resource = (object) $resource;
+        }
+
         if (is_null($resource->{$attribute}) and is_null($resource->id) and $this->defaultValue) {
             $this->value = json_encode([
                 'latitude'  => $this->defaultValue->getLatitude(),
